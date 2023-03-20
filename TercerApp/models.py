@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+
+
+
 class Paciente(models.Model):
 
     nombre = models.CharField(max_length=40) #nombre
@@ -16,9 +19,16 @@ class Protocolo(models.Model):
     nombre_protocolo = models.CharField(max_length=50)  # nombre
     numero_protocolo = models.IntegerField() #codigo que identifica al protocolo
 
+    def __str__(self):
+        return f"protocolo:{self.nombre_protocolo}, numero_protocolo:{self.numero_protocolo}"
+
 
 
 
 class Site(models.Model):
     nombre_site = models.CharField(max_length=50)  # nombre del centro medico
     numero_site = models.IntegerField() #codigo que identifica al centro medico
+
+    def __str__(self):
+        return f"site:{self.nombre_site}, numero_site:{self.numero_site}"
+

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block contenido_cambia %}
+    <form action="{% url 'TercerApp' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Agregar">
+    </form>
+    <br><hr>
+    <form action="{% url 'TercerApp'%}">
+        {{form_busqueda.as_p}}
+        <input type="submit" value="Buscar">
+    </form>
+    <hr><br>
+
+
+    {% if cursos %}
+        {% for curso in cursos %}
+            <p>curso: {{ paciente.nombre }}</p>
+            <p>camada: {{ paciente.apellido }}</p>
+            <p>camada: {{ paciente.numero_paciente }}</p>
+            <p>camada: {{ paciente.ojo_estudio }}</p>
+        {% endfor %}
+    {% else %}
+        <h1>No hay cursos en el momento</h1>
+    {% endif %}
+
+{% endblock %}
