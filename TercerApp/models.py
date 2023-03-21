@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 
 class Paciente(models.Model):
@@ -12,7 +10,7 @@ class Paciente(models.Model):
     ojo_estudio = models.CharField(max_length=2) #Puede ser ojo derecho(OD) u ojo izquierdo (OI)
 
     def __str__(self):
-        return f"Paciente:{self.nombre}, Apellido:{self.apellido}, numero_paciente:{self.numero_paciente}, ojo_estudio:{self.ojo_estudio}"
+        return f"paciente:{self.nombre}, apellido:{self.apellido}, numero_paciente:{self.numero_paciente}, ojo_estudio:{self.ojo_estudio}"
 
 
 class Protocolo(models.Model):
@@ -21,8 +19,6 @@ class Protocolo(models.Model):
 
     def __str__(self):
         return f"protocolo:{self.nombre_protocolo}, numero_protocolo:{self.numero_protocolo}"
-
-
 
 
 class Site(models.Model):

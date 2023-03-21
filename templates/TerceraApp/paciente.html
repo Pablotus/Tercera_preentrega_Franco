@@ -15,15 +15,15 @@
     <hr><br>
 
 
-    {% if cursos %}
-        {% for curso in cursos %}
-            <p>curso: {{ paciente.nombre }}</p>
-            <p>camada: {{ paciente.apellido }}</p>
-            <p>camada: {{ paciente.numero_paciente }}</p>
-            <p>camada: {{ paciente.ojo_estudio }}</p>
+    {% if paciente %}
+        {% for paciente in paciente %}
+            <p>nombre: {{ paciente.nombre }}</p>
+            <p>apellido: {{ paciente.apellido }}</p>
+            <p>numero_paciente: {{ paciente.numero_paciente }}</p>
+            <p>ojo_estudio: {{ paciente.ojo_estudio }}</p>
         {% endfor %}
     {% else %}
-        <h1>No hay cursos en el momento</h1>
+        <h1>No hay pacientes por el momento</h1>
     {% endif %}
 
 {% endblock %}

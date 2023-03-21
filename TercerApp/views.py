@@ -1,21 +1,17 @@
 from django.shortcuts import render
 from TercerApp.models import Paciente
-from TercerApp.forms import PacienteForm, ProtocoloForm, SiteForm
+from TercerApp.forms import PacienteForm, ProtocoloForm, SiteForm, BusquedaPacienteForm
 
 
 
-def busqueda_paciente(request):
-    #mostar datos filtrados
-    mi_formulario = PacienteForm(request.GET)
-    if mi_formulario.is_valid():
-        informacion = mi_formulario.cleaned_data
-        pacientes_filtrados = Paciente.objects.filter(nombre__icontains=informacion['nombre'])
-        context = {
-            "Paciente": PacienteForm()
-        }
-    return render(request, "TercerApp/busqueda_paciente.html", context=context)
+def pacientes(request):
+    all_pacientes = Paciente.objects.all()
+    context = {
+        "pacientes": all_pacientes
+    }
+    return render(request, "TercerApp/paciente.html", context=context)
 
-def paciente(request):
+def crear_paciente(request):
     if request.method == "POST":
         mi_formulario = PacienteForm(request.POST)
 
@@ -28,39 +24,39 @@ def paciente(request):
                 ojo_estudio = ['ojo_estudio'],
             )
             paciente_save.save()
-    all_paciente = paciente.objects.all()
+    all_paciente = Paciente.objects.all()
     context = {
-        "paciente": all_cursos,
+        "paciente": all_paciente,
         "form": PacienteForm(),
         "form_busqueda": BusquedaPacienteForm(),
     }
     return render(request, "TercerApp/paciente.html", context=context)
-
-
-
-
-def busqueda_protocolo(request):
-    #mostar datos filtrados
-    mi_formulario = PacienteForm(request.GET)
-    if mi_formulario.is_valid():
-        informacion = mi_formulario.cleaned_data
-        pacientes_filtrados = Paciente.objects.filter(nombre__icontains=informacion['nombre_protocolo'])
-        context = {
-            "Protocolo": ProtocoloForm()
-        }
-    return render(request, "TercerApp/busqueda_protocolo.html", context=context)
-
-
-def busqueda_site(request):
-    #mostar datos filtrados
-    mi_formulario = PacienteForm(request.GET)
-    if mi_formulario.is_valid():
-        informacion = mi_formulario.cleaned_data
-        pacientes_filtrados = Paciente.objects.filter(nombre__icontains=informacion['nombre_site'])
-        context = {
-            "Site": SiteForm()
-        }
-    return render(request, "TercerApp/busqueda_site.html", context=context)
+#
+#
+#
+#
+# def busqueda_protocolo(request):
+#     #mostar datos filtrados
+#     mi_formulario = PacienteForm(request.GET)
+#     if mi_formulario.is_valid():
+#         informacion = mi_formulario.cleaned_data
+#         pacientes_filtrados = Paciente.objects.filter(nombre__icontains=informacion['nombre_protocolo'])
+#         context = {
+#             "Protocolo": ProtocoloForm()
+#         }
+#     return render(request, "TercerApp/busqueda_protocolo.html", context=context)
+#
+#
+# def busqueda_site(request):
+#     #mostar datos filtrados
+#     mi_formulario = PacienteForm(request.GET)
+#     if mi_formulario.is_valid():
+#         informacion = mi_formulario.cleaned_data
+#         pacientes_filtrados = Paciente.objects.filter(nombre__icontains=informacion['nombre_site'])
+#         context = {
+#             "Site": SiteForm()
+#         }
+#     return render(request, "TercerApp/busqueda_site.html", context=context)
 
 
 def protocolo(request):
